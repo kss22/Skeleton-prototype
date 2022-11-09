@@ -5,15 +5,15 @@ import 'package:skeleton_prototype/components/rounded_button.dart';
 import 'package:skeleton_prototype/constants.dart';
 
 
-class BodySignup extends StatefulWidget {
-  const BodySignup({Key? key}) : super(key: key);
+class UserBodySignup extends StatefulWidget {
+  const UserBodySignup({Key? key}) : super(key: key);
 
   @override
-  _BodySignupState createState() => _BodySignupState();
+  _UserBodySignupState createState() => _UserBodySignupState();
 }
 
 
-class _BodySignupState extends State<BodySignup> {
+class _UserBodySignupState extends State<UserBodySignup> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -103,6 +103,22 @@ class _BodySignupState extends State<BodySignup> {
                   ),
                 ),
                 SizedBox(height: 80 ,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:[
+                    Text("You already have an account?"),
+                    InkWell(
+                        child: new Text(
+                          'Signin',
+                          style: TextStyle(color: kPrimaryColor,),
+                        ),
+                        //TODO correct the function
+                        onTap: () {
+                          Navigator.pushNamed(context, '/login');
+                        },
+                    ),
+                ],
+                ),
                 Center(
                   child: RoundedButton(
                     color: kPrimaryColor,

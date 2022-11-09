@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skeleton_prototype/Screens/Signup/components/body.dart';
+import 'package:skeleton_prototype/Screens/Signup/components/user_body.dart';
 import 'package:skeleton_prototype/constants.dart';
 
 
@@ -18,7 +18,7 @@ class _SignupScreenState extends State<SignupScreen> {
         title: Text("Sign Up"),
         backgroundColor: kPrimaryColor,
       ),
-      body: BodySignup(),
+      body: UserBodySignup(),
     );
   }
 }

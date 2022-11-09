@@ -34,7 +34,9 @@ class _BodyWelcomeState extends State<BodyWelcome> {
           text: "LOGIN",
           color: kPrimaryColor,
           //TODO determine function
-          press: () {},
+          press: () {
+            Navigator.pushNamed(context, '/login');
+          },
         ),
         RoundedButton(
           text: "SignUp",

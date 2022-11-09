@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Entity/entity_screen.dart';
+import 'package:skeleton_prototype/Screens/Login/login_screen.dart';
 import 'package:skeleton_prototype/Screens/Signup/user_signup_screen.dart';
 import 'package:skeleton_prototype/Screens/Welcome/welcome_screen.dart';
 
@@ -9,6 +10,7 @@ void main() => runApp(MaterialApp(
     '/': (context) => WelcomeScreen(),
     '/entity': (context) => EntityScreen(),
     '/signup' : (context) => SignupScreen(),
+    '/login' : (context) => LoginScreen(),
   },
   debugShowCheckedModeBanner: false,
 ));
