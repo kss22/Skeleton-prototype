@@ -3,14 +3,14 @@ import 'package:skeleton_prototype/Screens/Entity/components/background.dart';
 import 'package:skeleton_prototype/components/rounded_button.dart';
 import 'package:skeleton_prototype/constants.dart';
 
-class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+class BodyEntity extends StatefulWidget {
+  const BodyEntity({Key? key}) : super(key: key);
 
   @override
-  _BodyState createState() => _BodyState();
+  _BodyEntityState createState() => _BodyEntityState();
 }
 
-class _BodyState extends State<Body> {
+class _BodyEntityState extends State<BodyEntity> {
   String dropdownvalue = 'Choose here';
   @override
   Widget build(BuildContext context) {
@@ -63,11 +63,14 @@ class _BodyState extends State<Body> {
             ),
           ),
           SizedBox(height: 30,),
+          if (dropdownvalue == "User")
           RoundedButton(
             text: "Continue",
             color: kPrimaryColor,
             //TODO determine function
-            press: () { },
+            press: () {
+              Navigator.pushNamed(context, '/signup');
+            },
           ),
         ],
       ),

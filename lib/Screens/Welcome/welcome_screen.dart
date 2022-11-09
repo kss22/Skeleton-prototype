@@ -15,7 +15,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: kPrimaryLightBackColor,
-      body: Body(),
+      body: BodyWelcome(),
     );
   }
 }

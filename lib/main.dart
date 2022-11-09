@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Entity/entity_screen.dart';
+import 'package:skeleton_prototype/Screens/Signup/user_signup_screen.dart';
 import 'package:skeleton_prototype/Screens/Welcome/welcome_screen.dart';
-import 'package:skeleton_prototype/constants.dart';
 
 void main() => runApp(MaterialApp(
   initialRoute: '/',
   routes: {
     '/': (context) => WelcomeScreen(),
     '/entity': (context) => EntityScreen(),
+    '/signup' : (context) => SignupScreen(),
   },
+  debugShowCheckedModeBanner: false,
 ));
 
 // class MyApp extends StatelessWidget {

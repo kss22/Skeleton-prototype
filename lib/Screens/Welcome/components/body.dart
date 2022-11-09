@@ -5,13 +5,13 @@ import 'package:skeleton_prototype/constants.dart';
 
 
 
-class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+class BodyWelcome extends StatefulWidget {
+  const BodyWelcome({Key? key}) : super(key: key);
 
   @override
-  _BodyState createState() => _BodyState();
+  _BodyWelcomeState createState() => _BodyWelcomeState();
 }
-class _BodyState extends State<Body> {
+class _BodyWelcomeState extends State<BodyWelcome> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
