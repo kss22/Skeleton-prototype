@@ -67,7 +67,6 @@ class _BodyEntityState extends State<BodyEntity> {
           RoundedButton(
             text: "Continue",
             color: kPrimaryColor,
-            //TODO determine function
             press: () {
               Navigator.pushNamed(context, '/signup');
             },

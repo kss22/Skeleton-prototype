@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
 import 'package:skeleton_prototype/components/field_text.dart';
 import 'package:skeleton_prototype/components/rounded_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class BodyLogIn extends StatefulWidget {
   const BodyLogIn({Key? key}) : super(key: key);
@@ -10,8 +12,28 @@ class BodyLogIn extends StatefulWidget {
 }
 
 class _BodyLogInState extends State<BodyLogIn> {
+
+  static Future<User?> loginUsingEmailPassword({required String email, required String password, required BuildContext context}) async{
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try{
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e){
+      if (e.code == "user-not-found"){
+        print("No user found for this email");
+      }
+    }
+
+    return user;
+  }
+  
   @override
   Widget build(BuildContext context) {
+
+    //Create the textfield controller
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
@@ -38,14 +60,14 @@ class _BodyLogInState extends State<BodyLogIn> {
               Padding(
                 padding: EdgeInsets.only(left: 10.0,bottom: 5.0),
                 child: Text(
-                  "Username:",
+                  "Email Address:",
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 18.0,
                   ),
                 ),
               ),
-              Fieldtext(visibility: true, label: "e.g. Joe Abey", hint: "Enter Your Username", cap: TextCapitalization.words),
+              Fieldtext(controllers: _emailController, label: "e.g. Joe Abey", hint: "Enter Your Username", cap: TextCapitalization.words, visibility: true,),
               Padding(
                 padding: EdgeInsets.only(left: 10.0,bottom: 5.0, top: 5.0),
                 child: Text(
@@ -56,14 +78,21 @@ class _BodyLogInState extends State<BodyLogIn> {
                   ),
                 ),
               ),
-              Fieldtext(visibility: false, label: "e.g. ******", hint: "Enter you password", cap: TextCapitalization.none),
+              Fieldtext(controllers: _passwordController,visibility: false, label: "e.g. ******", hint: "Enter you password", cap: TextCapitalization.none),
               // SizedBox(height: 10, ),
               Container(
                 padding: EdgeInsets.only(top: 20.0),
                 alignment: Alignment.center,
                   child: RoundedButton(
-                      text: "Submit",
-                      press: (){}
+                      text: "Login",
+                      press: () async{
+                        //let's test the app
+                        User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
+                        print(user);
+                        if(user != null){
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+                        }
+                      }
                       ),
               ),
             ],

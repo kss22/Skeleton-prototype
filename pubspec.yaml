@@ -43,6 +43,7 @@ dependencies:
 #  libphonenumber_plugin: ^0.2.3
   percent_indicator: ^4.0.0
   firebase_core: ^1.12.0
+  firebase_auth: ^1.0.2
 
 
 
@@ -107,3 +108,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+

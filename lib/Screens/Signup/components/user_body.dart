@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:skeleton_prototype/Screens/Login/login_screen.dart';
 import 'package:skeleton_prototype/components/field_text.dart';
 import 'package:skeleton_prototype/components/rounded_button.dart';
 import 'package:skeleton_prototype/constants.dart';
@@ -16,6 +17,8 @@ class UserBodySignup extends StatefulWidget {
 class _UserBodySignupState extends State<UserBodySignup> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
         child: Column(
@@ -50,7 +53,7 @@ class _UserBodySignupState extends State<UserBodySignup> {
                     ),
                   ),
                 ),
-                Fieldtext(visibility: true, label: "e.g. Joe Abey", hint: "Enter Your Username", cap: TextCapitalization.words),
+                Fieldtext(controllers: _emailController,visibility: true, label: "e.g. Joe Abey", hint: "Enter Your Username", cap: TextCapitalization.words),
                 Padding(
                   padding: EdgeInsets.only(left: 10.0,bottom: 5.0, top: 5.0),
                   child: Text(
@@ -61,7 +64,7 @@ class _UserBodySignupState extends State<UserBodySignup> {
                     ),
                   ),
                 ),
-                Fieldtext(visibility: false, label: "e.g. ******", hint: "Enter you password", cap: TextCapitalization.none),
+                Fieldtext(controllers: _passwordController,visibility: false, label: "e.g. ******", hint: "Enter you password", cap: TextCapitalization.none),
                 Padding(
                   padding: EdgeInsets.only(left: 10.0,bottom: 5.0, top: 5.0),
                   child: Text(
@@ -72,7 +75,7 @@ class _UserBodySignupState extends State<UserBodySignup> {
                     ),
                   ),
                 ),
-                Fieldtext(visibility: true, label: "e.g. example@email.com", hint: "Enter your email", cap: TextCapitalization.none,),
+                Fieldtext(controllers: _emailController,visibility: true, label: "e.g. example@email.com", hint: "Enter your email", cap: TextCapitalization.none,),
                 Padding(
                   padding: EdgeInsets.only(left: 10.0,bottom: 5.0, top: 5.0),
                   child: Text(
@@ -112,9 +115,8 @@ class _UserBodySignupState extends State<UserBodySignup> {
                           'Signin',
                           style: TextStyle(color: kPrimaryColor,),
                         ),
-                        //TODO correct the function
                         onTap: () {
-                          Navigator.pushNamed(context, '/login');
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
                         },
                     ),
                 ],

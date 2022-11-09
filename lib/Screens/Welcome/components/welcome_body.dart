@@ -19,21 +19,20 @@ class _BodyWelcomeState extends State<BodyWelcome> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
       children:<Widget> [
-        SizedBox(height: 180),
-        Text(
+        const SizedBox(height: 180),
+        const Text(
           "WELCOME TO MEDICALIFE",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
         ),
-        SizedBox(height: 80),
+        const SizedBox(height: 80),
         Image.asset(
           "assets/icons/img_3.png",
           height: size.height * 0.2,
         ),
-        SizedBox(height: 80),
+        const SizedBox(height: 80),
         RoundedButton(
           text: "LOGIN",
           color: kPrimaryColor,
-          //TODO determine function
           press: () {
             Navigator.pushNamed(context, '/login');
           },
@@ -42,7 +41,6 @@ class _BodyWelcomeState extends State<BodyWelcome> {
           text: "SignUp",
           color: kPrimaryLightColor,
           textColor: kPrimaryColor,
-          //TODO determine function
           press: () {
             Navigator.pushNamed(context, '/entity');
           },
