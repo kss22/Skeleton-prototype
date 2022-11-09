@@ -27,6 +27,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+#  implementation platform('com.google.firebase:firebase-bom:31.0.2')
+#
+#  implementation 'com.google.firebase:firebase-analytics'
   flutter:
     sdk: flutter
 
@@ -37,13 +40,18 @@ dependencies:
   flutter_spinkit: ^5.1.0
   http: ^0.13.5
   intl_phone_number_input: ^0.7.1
+#  libphonenumber_plugin: ^0.2.3
   percent_indicator: ^4.0.0
+  firebase_core: ^1.12.0
+
+
 
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
