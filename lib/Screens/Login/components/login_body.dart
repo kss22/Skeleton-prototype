@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
+import 'package:skeleton_prototype/Screens/Welcome/welcome_screen.dart';
 import 'package:skeleton_prototype/components/field_text.dart';
 import 'package:skeleton_prototype/components/rounded_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -91,6 +92,9 @@ class _BodyLogInState extends State<BodyLogIn> {
                         print(user);
                         if(user != null){
                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+                          // Navigator.of(context).pushNamedAndRemoveUntil('/home' , (_) => false);
+                          // Navigator.pushNamedAndRemoveUntil('/home', (_) => false);
+                          // Navigator.of(context).pushReplacementNamed('/home');
                         }
                       }
                       ),
