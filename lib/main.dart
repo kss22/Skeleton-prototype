@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skeleton_prototype/Screens/Chat/chat_screen.dart';
 import 'package:skeleton_prototype/Screens/Entity/entity_screen.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
 import 'package:skeleton_prototype/Screens/Login/login_screen.dart';
@@ -13,7 +14,8 @@ void main() => runApp(MaterialApp(
     '/signup' : (context) => SignupScreen(),
     '/login' : (context) => LoginScreen(),
     '/home' : (context) => HomeScreen(),
-  },
+    '/chat' : (context) => Chat(),
+   },
   debugShowCheckedModeBanner: false,
 ));
 

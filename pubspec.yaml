@@ -44,7 +44,7 @@ dependencies:
   percent_indicator: ^4.0.0
   firebase_core: ^1.12.0
   firebase_auth: ^1.0.2
-  flutter_instagram_stories: ^1.0.0
+#  flutter_instagram_stories: ^1.0.0
 
 
 
