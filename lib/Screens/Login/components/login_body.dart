@@ -20,6 +20,7 @@ class _BodyLogInState extends State<BodyLogIn> {
   // String message = " Reset";
   bool wrongPassword = false;
   bool wrongUsername = false;
+  bool isTooMany = false;
   // Function inkwellFun = () {
   //   //TODO set reset
   // };
@@ -75,6 +76,16 @@ class _BodyLogInState extends State<BodyLogIn> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if(isTooMany) Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Too many tries. Try agian later",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.red,
+                  ),),
+              ),
               Padding(
                 padding: EdgeInsets.only(left: 10.0, bottom: 5.0),
                 child: Text(
@@ -179,6 +190,7 @@ class _BodyLogInState extends State<BodyLogIn> {
                           setState(() {
                             wrongUsername = false;
                             wrongPassword = false;
+                            isTooMany = false;
                           });
                           print(e.code);
                           if(e.code == "user-not-found"){
@@ -191,11 +203,21 @@ class _BodyLogInState extends State<BodyLogIn> {
                               wrongPassword = true;
                             });
                           }
-                          // else if(e.code == "invalid-emil"){
-                          //   setState(() {
-                          //     wrongUsername = true;
-                          //   });
-                          // }
+                          else if(e.code == "invalid-email"){
+                            setState(() {
+                              wrongUsername = true;
+                            });
+                          }
+                          else if(e.code == "unknown"){
+                            setState(() {
+                              wrongUsername = true;
+                              wrongPassword = true;
+                            });
+                          }
+                          else if(e.code == "too-many-requests"){
+                            wrongUsername = true;
+                            isTooMany = true;
+                          }
                         }
                       }
                     }),
