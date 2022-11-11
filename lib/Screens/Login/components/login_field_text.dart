@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/constants.dart';
 
-class Fieldtext extends StatelessWidget {
-  // final String errorMessage;
+class ErrorFieldtext extends StatelessWidget {
+  final String errorMessage;
   final bool visibility;
   final String label;
   final String hint;
   final TextCapitalization cap;
   final TextEditingController controllers;
 
-  const Fieldtext({
+  const ErrorFieldtext({
     Key? key,
-    // required this.errorMessage,
+    required this.errorMessage,
     required this.controllers,
     required this.visibility,
     required this.label,
@@ -35,7 +35,7 @@ class Fieldtext extends StatelessWidget {
           labelText: label,
           hintText: hint,
           // errorBorder: OutlineInputBorder(),
-          // errorText: errorMessage,
+          errorText: errorMessage,
           border: OutlineInputBorder(),
         ),
       ),

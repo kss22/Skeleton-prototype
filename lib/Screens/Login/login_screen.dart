@@ -34,8 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
           if(snapshot.connectionState == ConnectionState.done){
             return BodyLogIn();
           }
-          return const Center(
-            child: CircularProgressIndicator(),
+          return const Scaffold(
+            body: CircularProgressIndicator(),
           );
         },
       ),

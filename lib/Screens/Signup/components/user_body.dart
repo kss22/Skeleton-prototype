@@ -111,7 +111,7 @@ class _UserBodySignupState extends State<UserBodySignup> {
                   children:[
                     Text("You already have an account?"),
                     InkWell(
-                        child: new Text(
+                        child: Text(
                           'Signin',
                           style: TextStyle(color: kPrimaryColor,),
                         ),

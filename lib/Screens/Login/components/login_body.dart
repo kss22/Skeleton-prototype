@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
-import 'package:skeleton_prototype/Screens/Welcome/welcome_screen.dart';
+import 'package:skeleton_prototype/Screens/Login/components/login_field_text.dart';
+import 'package:skeleton_prototype/Screens/Signup/user_signup_screen.dart';
 import 'package:skeleton_prototype/components/field_text.dart';
 import 'package:skeleton_prototype/components/rounded_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:skeleton_prototype/constants.dart';
 
 class BodyLogIn extends StatefulWidget {
   const BodyLogIn({Key? key}) : super(key: key);
@@ -13,25 +15,36 @@ class BodyLogIn extends StatefulWidget {
 }
 
 class _BodyLogInState extends State<BodyLogIn> {
+  // String error = "Forgot password?";
+  // Color errorColor = kPrimaryLightColor;
+  // String message = " Reset";
+  bool wrongPassword = false;
+  bool wrongUsername = false;
+  // Function inkwellFun = () {
+  //   //TODO set reset
+  // };
 
-  static Future<User?> loginUsingEmailPassword({required String email, required String password, required BuildContext context}) async{
+  static Future<User?> loginUsingEmailPassword(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
-    try{
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
       user = userCredential.user;
-    } on FirebaseAuthException catch (e){
-      if (e.code == "user-not-found"){
-        print("No user found for this email");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        print(e.code);
+
       }
     }
-
     return user;
   }
-  
+
   @override
   Widget build(BuildContext context) {
-
     //Create the textfield controller
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
@@ -48,18 +61,22 @@ class _BodyLogInState extends State<BodyLogIn> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           Image.asset(
             "assets/icons/img_3.png",
-            height: size.height*0.2,
-            ),
-            SizedBox(height: 50,),
+            height: size.height * 0.2,
+          ),
+          SizedBox(
+            height: 50,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 10.0,bottom: 5.0),
+                padding: EdgeInsets.only(left: 10.0, bottom: 5.0),
                 child: Text(
                   "Email Address:",
                   style: TextStyle(
@@ -68,9 +85,25 @@ class _BodyLogInState extends State<BodyLogIn> {
                   ),
                 ),
               ),
-              Fieldtext(controllers: _emailController, label: "e.g. Joe Abey", hint: "Enter Your Username", cap: TextCapitalization.words, visibility: true,),
+              if (wrongUsername)
+                ErrorFieldtext(
+                  errorMessage: "Wrong email",
+                  controllers: _emailController,
+                  label: "e.g. Joe Abey",
+                  hint: "Enter Your Username",
+                  cap: TextCapitalization.words,
+                  visibility: true,
+                ),
+              if (!wrongUsername)
+                Fieldtext(
+                  cap: TextCapitalization.none,
+                  controllers: _emailController,
+                  label: "e.g. Joe Abey",
+                  hint: "Enter Your Username",
+                  visibility: true,
+                ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0,bottom: 5.0, top: 5.0),
+                padding: EdgeInsets.only(left: 10.0, bottom: 5.0, top: 5.0),
                 child: Text(
                   "Password:",
                   style: TextStyle(
@@ -79,25 +112,105 @@ class _BodyLogInState extends State<BodyLogIn> {
                   ),
                 ),
               ),
-              Fieldtext(controllers: _passwordController,visibility: false, label: "e.g. ******", hint: "Enter you password", cap: TextCapitalization.none),
-              // SizedBox(height: 10, ),
+              if (wrongPassword)
+                ErrorFieldtext(
+                    errorMessage: "Wrong password",
+                    controllers: _passwordController,
+                    visibility: false,
+                    label: "e.g. ******",
+                    hint: "Enter you password",
+                    cap: TextCapitalization.none),
+              if (!wrongPassword)
+                Fieldtext(
+                    controllers: _passwordController,
+                    visibility: false,
+                    label: "e.g. ******",
+                    hint: "Enter you password",
+                    cap: TextCapitalization.none),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Forgot your passwrod?",
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  InkWell(
+                    child: Text(
+                      " Reset",
+                      style: TextStyle(color: kPrimaryColor),
+                    ),
+                    onTap: (){
+                      //TODO reset password
+                    },
+                  ),
+                ],
+              ),
               Container(
                 padding: EdgeInsets.only(top: 20.0),
                 alignment: Alignment.center,
-                  child: RoundedButton(
-                      text: "Login",
-                      press: () async{
-                        //let's test the app
-                        User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
-                        print(user);
-                        if(user != null){
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
-                          // Navigator.of(context).pushNamedAndRemoveUntil('/home' , (_) => false);
-                          // Navigator.pushNamedAndRemoveUntil('/home', (_) => false);
-                          // Navigator.of(context).pushReplacementNamed('/home');
+                child: RoundedButton(
+                    text: "Login",
+                    press: () async {
+                      //let's test the app
+                      User? user = await loginUsingEmailPassword(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                          context: context);
+                      print(user);
+
+                      if (user != null) {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => HomeScreen()));
+                        // Navigator.of(context).pushNamedAndRemoveUntil('/home' , (_) => false);
+                        // Navigator.pushNamedAndRemoveUntil('/home', (_) => false);
+                        // Navigator.of(context).pushReplacementNamed('/home');
+                      } else {
+                        FirebaseAuth auth = FirebaseAuth.instance;
+                        try {
+                          UserCredential userCredential = await auth.signInWithEmailAndPassword(
+                              email: _emailController.text, password: _passwordController.text);
+                          user = userCredential.user;
+                        } on FirebaseAuthException catch (e) {
+                          setState(() {
+                            wrongUsername = false;
+                            wrongPassword = false;
+                          });
+                          print(e.code);
+                          if(e.code == "user-not-found"){
+                            setState(() {
+                              wrongUsername = true;
+                            });
+                          }
+                          else if (e.code == "wrong-password") {
+                            setState(() {
+                              wrongPassword = true;
+                            });
+                          }
+                          // else if(e.code == "invalid-emil"){
+                          //   setState(() {
+                          //     wrongUsername = true;
+                          //   });
+                          // }
                         }
                       }
-                      ),
+                    }),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 5.0),
+                alignment: Alignment.center,
+                child: RoundedButton(
+                    text: "Signup",
+                    color: kPrimaryLightColor,
+                    textColor: kPrimaryColor,
+                    press: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => SignupScreen()));
+                    }),
               ),
             ],
           ),
