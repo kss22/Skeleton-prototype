@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Login/login_screen.dart';
+import 'package:skeleton_prototype/components/rounded_button.dart';
+import 'package:skeleton_prototype/constants.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -33,19 +35,6 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.refresh),
-            onPressed: () async {
-              User? user = await refreshUser(_currentUser);
-              if (user != null) {
-                setState(() {
-                  _currentUser = user;
-                });
-              }
-            },
-          )
-        ],
       ),
       body: Center(
         child: Column(
@@ -53,41 +42,71 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Text(
               'Welcome: ${_currentUser.displayName}',
-              style: Theme.of(context).textTheme.bodyText1,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 28.0,
+              ),
             ),
             SizedBox(height: 16.0),
             Text(
               'Email: ${_currentUser.email}',
-              style: Theme.of(context).textTheme.bodyText1,
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: 24.0,
+                color: kPrimaryColor,
+              ),
             ),
             SizedBox(height: 16.0),
             _currentUser.emailVerified
                 ? Text(
               'Email verified',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: Colors.green),
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.green,
+              ),
             )
                 : Text(
               'Email not verified',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: Colors.red),
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.red,
+              ),
             ),
-            ElevatedButton(
-              onPressed: () async {
+            SizedBox(height: 20,),
+            RoundedButton(
+              press: () async {
                 await _currentUser.sendEmailVerification();
               },
-              child: Text('Verify email'),
+              text: 'Verify email',
             ),
-            ElevatedButton(
-              onPressed: () async {
+            SizedBox(height: 10,),
+            RoundedButton(
+              color: kPrimaryLightColor,
+              textColor: kPrimaryColor,
+              text: 'Login',
+              press: () async {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> LoginScreen()));
               },
-              child: Text('Login'),
-            )
+            ),
+            SizedBox(height: 6.0,),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: kPrimaryColor,
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.refresh),
+                color: kPrimaryLightColor,
+                onPressed: () async {
+                  User? user = await refreshUser(_currentUser);
+                  if (user != null) {
+                    setState(() {
+                      _currentUser = user;
+                    });
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),
