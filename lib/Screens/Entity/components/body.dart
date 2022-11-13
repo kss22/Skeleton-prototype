@@ -63,11 +63,12 @@ class _BodyEntityState extends State<BodyEntity> {
             ),
           ),
           SizedBox(height: 30,),
-          if (dropdownvalue == "User")
+          if (dropdownvalue != "Choose here")
           RoundedButton(
             text: "Continue",
             color: kPrimaryColor,
             press: () {
+              //TODO change signup page
               Navigator.pushNamed(context, '/signup');
             },
           ),
