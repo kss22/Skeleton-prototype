@@ -5,6 +5,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
 import 'package:skeleton_prototype/Screens/Login/components/login_field_text.dart';
 import 'package:skeleton_prototype/Screens/Login/login_screen.dart';
+import 'package:skeleton_prototype/Screens/Profile/profile_screen.dart';
 import 'package:skeleton_prototype/components/field_text.dart';
 import 'package:skeleton_prototype/components/rounded_button.dart';
 import 'package:skeleton_prototype/constants.dart';
@@ -226,7 +227,7 @@ class _UserBodySignupState extends State<UserBodySignup> {
                       wrongEmail = false;
                     });
                     if(user != null){
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> HomeScreen()));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> ProfilePage(user: user)));
                     }
                     FirebaseAuth auth = FirebaseAuth.instance;
 
