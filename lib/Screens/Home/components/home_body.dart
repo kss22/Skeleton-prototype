@@ -54,7 +54,10 @@ class _HomeBodyState extends State<HomeBody> {
                     children: [
                       CircleAvatar(
                         radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Image.asset("assets/icons/motilium.jpeg"),
+                        ),
                       ),
                       SizedBox(
                         height: 5.0,
@@ -135,7 +138,96 @@ class _HomeBodyState extends State<HomeBody> {
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20),
               children: [
-                Image.asset('assets/icons/profinal.jpeg'),
+                DecoratedBox(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: kPrimaryColor),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(29.0)
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Image.asset('assets/icons/profinal.jpeg'),
+                    ),),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/panadol.jpg'),
+                  ),),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/augmontin.jpg'),
+                  ),),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/cataflam.jpg'),
+                  ),),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/flagyl.png'),
+                  ),),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/advil.jpg'),
+                  ),),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/amoxicillin.jpg'),
+                  ),),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/tylenol.jpg'),
+                  ),),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/motilium.jpeg'),
+                  ),),
                 Image.asset('assets/icons/panadol.jpg'),
                 Image.asset('assets/icons/augmontin.jpg'),
                 Image.asset('assets/icons/cataflam.jpg'),

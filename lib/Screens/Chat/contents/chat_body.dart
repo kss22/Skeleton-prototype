@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:skeleton_prototype/Screens/Chat/chat_screen_individual.dart';
 import 'package:skeleton_prototype/constants.dart';
 
 class ChatBody extends StatefulWidget {
@@ -39,9 +40,12 @@ class _ChatBodyState extends State<ChatBody> {
                       ],
                     )),
               ),
-              onTap: () => Scaffold
-                  .of(context)
-                  .showSnackBar(SnackBar(content: Text("Chat Username" + index.toString()))),
+              // onTap: () => Scaffold
+              //     .of(context)
+              //     .showSnackBar(SnackBar(content: Text("Chat Username" + index.toString()))),
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ChatPage()));
+              },
             );
           },
           itemCount: 10),
