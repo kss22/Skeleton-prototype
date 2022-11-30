@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Chat/chat_screen.dart';
 import 'package:skeleton_prototype/Screens/Home/components/search.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
+import 'package:skeleton_prototype/Screens/model/panadol.dart';
 import 'package:skeleton_prototype/constants.dart';
 
 class HomeBody extends StatefulWidget {
@@ -56,7 +57,7 @@ class _HomeBodyState extends State<HomeBody> {
                         radius: 40,
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
-                          child: Image.asset("assets/icons/motilium.jpeg"),
+                          child: Image.asset("assets/icons/img_3.png"),
                         ),
                       ),
                       SizedBox(
@@ -146,7 +147,12 @@ class _HomeBodyState extends State<HomeBody> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Image.asset('assets/icons/profinal.jpeg'),
+                      child: FlatButton(
+                          onPressed: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Panadol()));
+                          },
+                          child: Image.asset('assets/icons/panadol.jpg'),
+                      ),
                     ),),
                 DecoratedBox(
                   decoration: BoxDecoration(
@@ -156,7 +162,7 @@ class _HomeBodyState extends State<HomeBody> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/panadol.jpg'),
+                    child: Image.asset('assets/icons/profinal.jpeg'),
                   ),),
                 DecoratedBox(
                   decoration: BoxDecoration(

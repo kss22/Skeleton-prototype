@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skeleton_prototype/Screens/model/panadol.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   // Demo list to show querying
@@ -61,6 +62,7 @@ class CustomSearchDelegate extends SearchDelegate {
         var result = matchQuery[index];
         return ListTile(
           title: Text(result),
+          onTap: (){},
         );
       },
     );
@@ -82,6 +84,9 @@ class CustomSearchDelegate extends SearchDelegate {
         var result = matchQuery[index];
         return ListTile(
           title: Text(result),
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Panadol()));
+          },
         );
       },
     );
