@@ -5,6 +5,8 @@ import 'package:skeleton_prototype/Screens/Home/components/map_screen.dart';
 import 'package:skeleton_prototype/Screens/Home/components/search.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
 import 'package:skeleton_prototype/Screens/List/pharmacies_screen.dart';
+import 'package:skeleton_prototype/Screens/model/adol.dart';
+import 'package:skeleton_prototype/Screens/model/advil.dart';
 import 'package:skeleton_prototype/Screens/model/panadol.dart';
 import 'package:skeleton_prototype/constants.dart';
 
@@ -29,13 +31,15 @@ class _HomeBodyState extends State<HomeBody> {
           IconButton(
             onPressed: () {
               //TODO add map
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MapScreen()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => MapScreen()));
             },
             icon: Icon(Icons.location_on),
           ),
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Chat()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Chat()));
             },
             icon: Icon(Icons.chat),
           ),
@@ -143,120 +147,225 @@ class _HomeBodyState extends State<HomeBody> {
                   mainAxisSpacing: 20),
               children: [
                 DecoratedBox(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: kPrimaryColor),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(29.0)
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => Panadol()));
+                      },
+                      child: Image.asset('assets/icons/panadol.jpg'),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: FlatButton(
-                          onPressed: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Panadol()));
-                          },
-                          child: Image.asset('assets/icons/panadol.jpg'),
-                      ),
-                    ),),
+                  ),
+                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimaryColor),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)
-                  ),
+                      borderRadius: BorderRadius.circular(29.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset('assets/icons/profinal.jpeg'),
-                  ),),
+                  ),
+                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimaryColor),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)
-                  ),
+                      borderRadius: BorderRadius.circular(29.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset('assets/icons/augmontin.jpg'),
-                  ),),
+                  ),
+                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimaryColor),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)
-                  ),
+                      borderRadius: BorderRadius.circular(29.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset('assets/icons/cataflam.jpg'),
-                  ),),
+                  ),
+                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimaryColor),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)
-                  ),
+                      borderRadius: BorderRadius.circular(29.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset('assets/icons/flagyl.png'),
-                  ),),
+                  ),
+                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimaryColor),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)
-                  ),
+                      borderRadius: BorderRadius.circular(29.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset('assets/icons/advil.jpg'),
-                  ),),
+                  ),
+                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimaryColor),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)
-                  ),
+                      borderRadius: BorderRadius.circular(29.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset('assets/icons/amoxicillin.jpg'),
-                  ),),
+                  ),
+                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimaryColor),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)
-                  ),
+                      borderRadius: BorderRadius.circular(29.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset('assets/icons/tylenol.jpg'),
-                  ),),
+                  ),
+                ),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimaryColor),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)
-                  ),
+                      borderRadius: BorderRadius.circular(29.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset('assets/icons/motilium.jpeg'),
-                  ),),
-                Image.asset('assets/icons/panadol.jpg'),
-                Image.asset('assets/icons/augmontin.jpg'),
-                Image.asset('assets/icons/cataflam.jpg'),
-                Image.asset('assets/icons/tylenol.jpg'),
-                Image.asset('assets/icons/amoxicillin.jpg'),
-                Image.asset('assets/icons/advil.jpg'),
-                Image.asset('assets/icons/flagyl.png'),
-                Image.asset('assets/icons/motilium.jpeg'),
-                Image.asset('assets/icons/muscerol.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
-                Image.asset('assets/icons/img_3.png'),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => Adol()));
+                      },
+                      child: Image.asset('assets/icons/adol.jpg'),
+                    ),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/augmontin.jpg'),
+                  ),
+                ),
+                // Image.asset('assets/icons/panadol.jpg'),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/cataflam.jpg'),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/tylenol.jpg'),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/amoxicillin.jpg'),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => Advil()));
+                      },
+                      child: Image.asset('assets/icons/advil.jpg'),
+                    ),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/flagyl.png'),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/motilium.jpeg'),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/muscerol.png'),
+                  ),
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset('assets/icons/adol.jpg'),
+                  ),
+                ),
+
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
+                // Image.asset('assets/icons/img_3.png'),
               ],
             ),
           ],
@@ -276,7 +385,8 @@ class _HomeBodyState extends State<HomeBody> {
                 padding: EdgeInsets.only(left: 28.0),
                 icon: Icon(Icons.home),
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 },
               ),
               IconButton(
@@ -301,7 +411,8 @@ class _HomeBodyState extends State<HomeBody> {
                 padding: EdgeInsets.only(right: 28.0),
                 icon: Icon(Icons.list),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Pharmacies()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Pharmacies()));
                 },
               )
             ],

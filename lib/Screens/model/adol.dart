@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Alternative/alternative.dart';
 import 'package:skeleton_prototype/Screens/Home/components/map_screen.dart';
-import 'package:skeleton_prototype/Screens/List/pharmacies_screen.dart';
 import 'package:skeleton_prototype/components/expandable.dart';
 import 'package:skeleton_prototype/constants.dart';
 
-class Panadol extends StatelessWidget {
-  const Panadol({Key? key}) : super(key: key);
+class Adol extends StatelessWidget {
+  const Adol({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +32,12 @@ class Panadol extends StatelessWidget {
                 padding: EdgeInsets.all(20.0),
                 height: 240.0,
                 width: 240.0,
-                child: Image.asset('assets/icons/panadol.jpg'),
+                child: Image.asset('assets/icons/adol.jpg'),
               ),
               FlatButton(
                 onPressed: () {},
                 child: Text(
-                  "165,023 L.L",
+                  "54,459 L.L",
                   style: TextStyle(
                       color: kPrimaryColor,
                       fontSize: 32.0,
@@ -93,7 +92,6 @@ class Panadol extends StatelessWidget {
               FlatButton(
                 onPressed: () {
                   //TODO add function to GET
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Pharmacies()));
                 },
                 child: Text(
                   "Get",
@@ -160,7 +158,7 @@ class Panadol extends StatelessWidget {
               ),
               ExpandableText(
                 text:
-                    "Tablet | White, film-coated capsule shaped tablet with a triangular logo debossed on one side and a break line on the other.",
+                "Tablet | White, film-coated capsule shaped tablet with a triangular logo debossed on one side and a break line on the other.",
               ),
               // Text(
               //   "Tablet | White, film-coated capsule shaped tablet with a triangular logo debossed on one side and a break line on the other.",
@@ -183,7 +181,7 @@ class Panadol extends StatelessWidget {
               ),
               ExpandableText(
                 text:
-                    "Panadol Original Tablets is a mild analgesic and antipyretic, and is recommended for the treatment of most painful and febrile conditions, for example, headache including migraine and tension headaches, toothache, backache, rheumatic and muscle pains, dysmenorrhoea, sore throat, and for relieving the fever, aches and pains of colds and flu. Also recommended for the symptomatic relief of pain due to non-serious arthritis.",
+                "Panadol Original Tablets is a mild analgesic and antipyretic, and is recommended for the treatment of most painful and febrile conditions, for example, headache including migraine and tension headaches, toothache, backache, rheumatic and muscle pains, dysmenorrhoea, sore throat, and for relieving the fever, aches and pains of colds and flu. Also recommended for the symptomatic relief of pain due to non-serious arthritis.",
               ),
               // Text(
               //   "Panadol Original Tablets is a mild analgesic and antipyretic, and is recommended for the treatment of most painful and febrile conditions, for example, headache including migraine and tension headaches, toothache, backache, rheumatic and muscle pains, dysmenorrhoea, sore throat, and for relieving the fever, aches and pains of colds and flu. Also recommended for the symptomatic relief of pain due to non-serious arthritis.",
@@ -206,7 +204,7 @@ class Panadol extends StatelessWidget {
               ),
               ExpandableText(
                 text:
-                    "Adults, the elderly, and children aged 16 years and over: | One or two tablets up to four times daily as required. | Children: | Aged 10 - 15 years: One tablet up to four times daily as required. | Not suitable for children under 10 years of age. Children should not be given Panadol Original Tablets for more than 3 days without consulting a doctor. | These doses should not be repeated more frequently than every four hours nor should more than four doses be given in any 24 hour period. | Oral administration only.",
+                "Adults, the elderly, and children aged 16 years and over: | One or two tablets up to four times daily as required. | Children: | Aged 10 - 15 years: One tablet up to four times daily as required. | Not suitable for children under 10 years of age. Children should not be given Panadol Original Tablets for more than 3 days without consulting a doctor. | These doses should not be repeated more frequently than every four hours nor should more than four doses be given in any 24 hour period. | Oral administration only.",
               ),
               // Text(
               //   "Adults, the elderly, and children aged 16 years and over: | One or two tablets up to four times daily as required. | Children: | Aged 10 - 15 years: One tablet up to four times daily as required. | Not suitable for children under 10 years of age. Children should not be given Panadol Original Tablets for more than 3 days without consulting a doctor. | These doses should not be repeated more frequently than every four hours nor should more than four doses be given in any 24 hour period. | Oral administration only.",
@@ -229,7 +227,7 @@ class Panadol extends StatelessWidget {
               ),
               ExpandableText(
                 text:
-                    "Hypersensitivity to paracetamol or any of the other constituents.",
+                "Hypersensitivity to paracetamol or any of the other constituents.",
               ),
               // Text(
               //   "Hypersensitivity to paracetamol or any of the other constituents.",
@@ -252,7 +250,7 @@ class Panadol extends StatelessWidget {
               ),
               ExpandableText(
                 text:
-                    "The speed of absorption of paracetamol may be increased by metoclopramide or domperidone and absorption reduced by colestyramine. The anticoagulant effect of warfarin and other coumarins may be enhanced by prolonged regular daily use of paracetamol with increased risk of bleeding; occasional doses have no significant effect.",
+                "The speed of absorption of paracetamol may be increased by metoclopramide or domperidone and absorption reduced by colestyramine. The anticoagulant effect of warfarin and other coumarins may be enhanced by prolonged regular daily use of paracetamol with increased risk of bleeding; occasional doses have no significant effect.",
               ),
               // Text(
               //   "The speed of absorption of paracetamol may be increased by metoclopramide or domperidone and absorption reduced by colestyramine. The anticoagulant effect of warfarin and other coumarins may be enhanced by prolonged regular daily use of paracetamol with increased risk of bleeding; occasional doses have no significant effect.",
@@ -275,7 +273,7 @@ class Panadol extends StatelessWidget {
               ),
               ExpandableText(
                 text:
-                    "Paracetamol is excreted in breast milk but not in a clinically significant amount in recommended dosages. Available published data do not contraindicate breastfeeding.",
+                "Paracetamol is excreted in breast milk but not in a clinically significant amount in recommended dosages. Available published data do not contraindicate breastfeeding.",
               ),
               // Text(
               //   "Paracetamol is excreted in breast milk but not in a clinically significant amount in recommended dosages. Available published data do not contraindicate breastfeeding.",
@@ -298,7 +296,7 @@ class Panadol extends StatelessWidget {
               ),
               ExpandableText(
                 text:
-                    "Paracetamol overdose may cause liver failure which may require liver transplant or lead to death. | Liver damage is possible in adults who have taken 10g or more of paracetamol. Ingestion of 5g or more of paracetamol may lead to liver damage if the patient has risk factors (see below).",
+                "Paracetamol overdose may cause liver failure which may require liver transplant or lead to death. | Liver damage is possible in adults who have taken 10g or more of paracetamol. Ingestion of 5g or more of paracetamol may lead to liver damage if the patient has risk factors (see below).",
               ),
               // Text(
               //   "Paracetamol overdose may cause liver failure which may require liver transplant or lead to death. | Liver damage is possible in adults who have taken 10g or more of paracetamol. Ingestion of 5g or more of paracetamol may lead to liver damage if the patient has risk factors (see below).",
