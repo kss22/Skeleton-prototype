@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Chat/chat_screen.dart';
+import 'package:skeleton_prototype/Screens/Home/components/map_screen.dart';
 import 'package:skeleton_prototype/Screens/Home/components/search.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
+import 'package:skeleton_prototype/Screens/List/pharmacies_screen.dart';
 import 'package:skeleton_prototype/Screens/model/panadol.dart';
 import 'package:skeleton_prototype/constants.dart';
 
@@ -27,6 +29,7 @@ class _HomeBodyState extends State<HomeBody> {
           IconButton(
             onPressed: () {
               //TODO add map
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MapScreen()));
             },
             icon: Icon(Icons.location_on),
           ),
@@ -42,93 +45,93 @@ class _HomeBodyState extends State<HomeBody> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Container(
-                  color: kPrimaryLightColor,
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.symmetric(vertical: 0),
-                  height: 80,
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 40,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Image.asset("assets/icons/img_3.png"),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                        width: 5.0,
-                      ),
-                      CircleAvatar(
-                        radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                        width: 5.0,
-                      ),
-                      CircleAvatar(
-                        radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                        width: 5.0,
-                      ),
-                      CircleAvatar(
-                        radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                        width: 5.0,
-                      ),
-                      CircleAvatar(
-                        radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                        width: 5.0,
-                      ),
-                      CircleAvatar(
-                        radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                        width: 5.0,
-                      ),
-                      CircleAvatar(
-                        radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                        width: 5.0,
-                      ),
-                      CircleAvatar(
-                        radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                        width: 5.0,
-                      ),
-                      CircleAvatar(
-                        radius: 40,
-                        child: Image.asset("assets/icons/img_3.png"),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            // SingleChildScrollView(
+            //   scrollDirection: Axis.horizontal,
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(bottom: 8.0),
+            //     child: Container(
+            //       color: kPrimaryLightColor,
+            //       padding: EdgeInsets.all(5.0),
+            //       margin: EdgeInsets.symmetric(vertical: 0),
+            //       height: 80,
+            //       child: Row(
+            //         children: [
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Padding(
+            //               padding: const EdgeInsets.all(12.0),
+            //               child: Image.asset("assets/icons/img_3.png"),
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: 5.0,
+            //             width: 5.0,
+            //           ),
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Image.asset("assets/icons/img_3.png"),
+            //           ),
+            //           SizedBox(
+            //             height: 5.0,
+            //             width: 5.0,
+            //           ),
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Image.asset("assets/icons/img_3.png"),
+            //           ),
+            //           SizedBox(
+            //             height: 5.0,
+            //             width: 5.0,
+            //           ),
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Image.asset("assets/icons/img_3.png"),
+            //           ),
+            //           SizedBox(
+            //             height: 5.0,
+            //             width: 5.0,
+            //           ),
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Image.asset("assets/icons/img_3.png"),
+            //           ),
+            //           SizedBox(
+            //             height: 5.0,
+            //             width: 5.0,
+            //           ),
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Image.asset("assets/icons/img_3.png"),
+            //           ),
+            //           SizedBox(
+            //             height: 5.0,
+            //             width: 5.0,
+            //           ),
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Image.asset("assets/icons/img_3.png"),
+            //           ),
+            //           SizedBox(
+            //             height: 5.0,
+            //             width: 5.0,
+            //           ),
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Image.asset("assets/icons/img_3.png"),
+            //           ),
+            //           SizedBox(
+            //             height: 5.0,
+            //             width: 5.0,
+            //           ),
+            //           CircleAvatar(
+            //             radius: 40,
+            //             child: Image.asset("assets/icons/img_3.png"),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
             GridView(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -297,7 +300,9 @@ class _HomeBodyState extends State<HomeBody> {
                 iconSize: 30.0,
                 padding: EdgeInsets.only(right: 28.0),
                 icon: Icon(Icons.list),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Pharmacies()));
+                },
               )
             ],
           ),

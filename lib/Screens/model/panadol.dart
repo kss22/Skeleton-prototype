@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:skeleton_prototype/Screens/Home/components/map_screen.dart';
 import 'package:skeleton_prototype/components/expandable.dart';
+import 'package:skeleton_prototype/constants.dart';
 
 class Panadol extends StatelessWidget {
   const Panadol({Key? key}) : super(key: key);
@@ -11,10 +13,12 @@ class Panadol extends StatelessWidget {
         automaticallyImplyLeading: true,
         centerTitle: true,
         title: Text("Panadol"),
-        actions: [IconButton(
+        actions: [
+          IconButton(
             onPressed: () {},
             icon: Icon(Icons.more_vert),
-        )],
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -29,6 +33,73 @@ class Panadol extends StatelessWidget {
                 width: 240.0,
                 child: Image.asset('assets/icons/panadol.jpg'),
               ),
+              FlatButton(
+                onPressed: () {},
+                child: Text(
+                  "165,023 L.L",
+                  style: TextStyle(
+                      color: kPrimaryColor,
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                color: kPrimaryLightColor,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MapScreen()));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: kPrimaryLightColor,
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            "Availability Nearby ",
+                            style: TextStyle(color: kPrimaryLightColor),
+                          ),
+                        ],
+                      ),
+                      color: kPrimaryColor,
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        //TODO add function for alternatives
+                      },
+                      child: Text(
+                        "Check Alternatives",
+                        style: TextStyle(
+                          color: kPrimaryLightColor,
+                        ),
+                      ),
+                      color: kPrimaryColor,
+                    ),
+                  ],
+                ),
+              ),
+              FlatButton(
+                onPressed: () {
+                  //TODO add function to GET
+                },
+                child: Text(
+                  "Get",
+                  style: TextStyle(
+                    color: kPrimaryLightColor,
+                  ),
+                ),
+                color: kPrimaryColor,
+              ),
+
               Text(
                 "1. Name of the medicinal product",
                 style: TextStyle(

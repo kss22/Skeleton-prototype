@@ -48,7 +48,7 @@ class _ChatBodyState extends State<ChatBody> {
               },
             );
           },
-          itemCount: 10),
+          itemCount: 20),
     );
     // Container(
     //   padding: EdgeInsets.only(left: 7.0, top: 3.0),
