@@ -5,6 +5,7 @@ import 'package:skeleton_prototype/Screens/Home/components/map_screen.dart';
 import 'package:skeleton_prototype/Screens/Home/components/search.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
 import 'package:skeleton_prototype/Screens/List/pharmacies_screen.dart';
+import 'package:skeleton_prototype/Screens/UserProfile/user_profile_screen.dart';
 import 'package:skeleton_prototype/Screens/model/adol.dart';
 import 'package:skeleton_prototype/Screens/model/advil.dart';
 import 'package:skeleton_prototype/Screens/model/panadol.dart';
@@ -404,7 +405,9 @@ class _HomeBodyState extends State<HomeBody> {
                 iconSize: 30.0,
                 padding: EdgeInsets.only(left: 28.0),
                 icon: Icon(Icons.notifications),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, "/notification");
+                },
               ),
               IconButton(
                 iconSize: 30.0,
@@ -424,9 +427,12 @@ class _HomeBodyState extends State<HomeBody> {
         width: 65.0,
         child: FittedBox(
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => UserProfileScreen()));
+            },
             child: Icon(
-              Icons.add,
+              Icons.person,
               color: Colors.white,
             ),
             // elevation: 5.0,

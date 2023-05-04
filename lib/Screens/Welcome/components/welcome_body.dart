@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Welcome/components/background.dart';
 import 'package:skeleton_prototype/components/rounded_button.dart';
@@ -14,6 +15,7 @@ class BodyWelcome extends StatefulWidget {
 class _BodyWelcomeState extends State<BodyWelcome> {
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Background(
       child: Column(
@@ -34,7 +36,7 @@ class _BodyWelcomeState extends State<BodyWelcome> {
           text: "LOGIN",
           color: kPrimaryColor,
           press: () {
-            Navigator.pushNamed(context, '/login');
+            Navigator.pushNamed(context, '/login_entity');
           },
         ),
         RoundedButton(

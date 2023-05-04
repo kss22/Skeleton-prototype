@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:skeleton_prototype/Screens/DoctorSignup/doctor_signup.dart';
+import 'package:skeleton_prototype/Screens/DoctorSignup/doctor_signup_screen.dart';
 import 'package:skeleton_prototype/Screens/Entity/components/background.dart';
+import 'package:skeleton_prototype/Screens/PharmacySignup/pharmacy_signup_screen.dart';
 import 'package:skeleton_prototype/components/rounded_button.dart';
 import 'package:skeleton_prototype/constants.dart';
 
@@ -63,8 +66,8 @@ class _BodyEntityState extends State<BodyEntity> {
             ),
           ),
           SizedBox(height: 30,),
-          if (dropdownvalue != "Choose here")
-          RoundedButton(
+          if (dropdownvalue == "User")
+            RoundedButton(
             text: "Continue",
             color: kPrimaryColor,
             press: () {
@@ -72,6 +75,24 @@ class _BodyEntityState extends State<BodyEntity> {
               Navigator.pushNamed(context, '/signup');
             },
           ),
+          if(dropdownvalue=="Doctor")
+            RoundedButton(
+              text: "Continue",
+              color: kPrimaryColor,
+              press: () {
+                //TODO change signup page
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DoctorScreen()));
+              },
+            ),
+          if(dropdownvalue=="Pharmacist")
+            RoundedButton(
+              text: "Continue",
+              color: kPrimaryColor,
+              press: () {
+                //TODO change signup page
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PharmacyScreen()));
+              },
+            ),
         ],
       ),
     );

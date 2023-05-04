@@ -13,6 +13,7 @@ class ProfilePage extends StatefulWidget {
 }
 class _ProfilePageState extends State<ProfilePage> {
   FirebaseAuth auth = FirebaseAuth.instance;
+
   static Future<User?> refreshUser(User user) async {
     FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -23,6 +24,12 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   late User _currentUser;
+
+  String verifyBtn = "Verify email";
+
+  void setVerifyBtn() {
+    verifyBtn = "email sent";
+  }
 
   @override
   void initState() {
@@ -35,13 +42,14 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
+        backgroundColor: kPrimaryColor,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Welcome: ${_currentUser.displayName}',
+              'Welcome ${_currentUser.displayName}',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 28.0,
@@ -66,29 +74,45 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             )
                 : Text(
-              'Email not verified',
+              'Email not verified. Check Junk Box',
               style: TextStyle(
                 fontSize: 20.0,
                 color: Colors.red,
               ),
             ),
-            SizedBox(height: 20,),
-            RoundedButton(
+            SizedBox(
+              height: 20,
+            ),
+            !_currentUser.emailVerified
+                ? RoundedButton(
               press: () async {
                 await _currentUser.sendEmailVerification();
+                setVerifyBtn();
               },
-              text: 'Verify email',
+              text: verifyBtn,
+            )
+                : SizedBox(
+              height: 10.0,
             ),
-            SizedBox(height: 10,),
-            RoundedButton(
-              color: kPrimaryLightColor,
-              textColor: kPrimaryColor,
+            SizedBox(
+              height: 10,
+            ),
+            _currentUser.emailVerified
+                ? RoundedButton(
+              color: kPrimaryColor,
+              textColor: kPrimaryLightColor,
               text: 'Login',
               press: () async {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> LoginScreen()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               },
+            )
+                : SizedBox(
+              height: 10.0,
             ),
-            SizedBox(height: 6.0,),
+            SizedBox(
+              height: 6.0,
+            ),
             DecoratedBox(
               decoration: BoxDecoration(
                 color: kPrimaryColor,

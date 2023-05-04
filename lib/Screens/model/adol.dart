@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skeleton_prototype/Screens/Alternative/alternative.dart';
 import 'package:skeleton_prototype/Screens/Home/components/map_screen.dart';
+import 'package:skeleton_prototype/Screens/Prescriptions/components/prescription_body.dart';
 import 'package:skeleton_prototype/components/expandable.dart';
 import 'package:skeleton_prototype/constants.dart';
 
@@ -13,7 +13,7 @@ class Adol extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         centerTitle: true,
-        title: Text("Panadol"),
+        title: Text("Adol"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -76,7 +76,13 @@ class Adol extends StatelessWidget {
                     FlatButton(
                       onPressed: () {
                         //TODO add function for alternatives
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Alternative()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                PrescriptionPage(medicineName: "Advil", patientUid: "XPNDpsdWerZTprvBLSUcyfH8Gqh1",),
+                          ),
+                        );
                       },
                       child: Text(
                         "Check Alternatives",

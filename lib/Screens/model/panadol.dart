@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skeleton_prototype/Screens/Alternative/alternative.dart';
 import 'package:skeleton_prototype/Screens/Home/components/map_screen.dart';
 import 'package:skeleton_prototype/Screens/List/pharmacies_screen.dart';
+import 'package:skeleton_prototype/Screens/Prescriptions/components/prescription_body.dart';
 import 'package:skeleton_prototype/components/expandable.dart';
 import 'package:skeleton_prototype/constants.dart';
 
@@ -93,10 +94,16 @@ class Panadol extends StatelessWidget {
               FlatButton(
                 onPressed: () {
                   //TODO add function to GET
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Pharmacies()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PrescriptionPage(medicineName: "Panadol", patientUid: "XPNDpsdWerZTprvBLSUcyfH8Gqh1"),
+                    ),
+                  );
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Pharmacies()));
                 },
                 child: Text(
-                  "Get",
+                  "Add to prescription",
                   style: TextStyle(
                     color: kPrimaryLightColor,
                   ),

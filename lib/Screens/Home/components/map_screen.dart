@@ -1,31 +1,31 @@
-// import 'package:flutter/material.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// // import 'package:flutter/material.dart';
+// // import 'package:google_maps_flutter/google_maps_flutter.dart';
+// //
+// // class MapScreen extends StatefulWidget {
+// //   const MapScreen({Key? key}) : super(key: key);
+// //
+// //   @override
+// //   _MapScreenState createState() => _MapScreenState();
+// // }
+// //
+// // class _MapScreenState extends State<MapScreen> {
+// //   static const _initialCameraPosition = CameraPosition(
+// //     target: LatLng(38, -100),
+// //     zoom: 11.5,
+// //   );
+// //
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return Scaffold(
+// //       body: GoogleMap(
+// //         myLocationButtonEnabled: false,
+// //         zoomControlsEnabled: false,
+// //         initialCameraPosition: _initialCameraPosition,
+// //       ),
+// //     );
+// //   }
+// // }
 //
-// class MapScreen extends StatefulWidget {
-//   const MapScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   _MapScreenState createState() => _MapScreenState();
-// }
-//
-// class _MapScreenState extends State<MapScreen> {
-//   static const _initialCameraPosition = CameraPosition(
-//     target: LatLng(38, -100),
-//     zoom: 11.5,
-//   );
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: GoogleMap(
-//         myLocationButtonEnabled: false,
-//         zoomControlsEnabled: false,
-//         initialCameraPosition: _initialCameraPosition,
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -73,6 +73,41 @@ class _MapScreenState extends State<MapScreen> {
 
   }
 }
-
-
-
+//
+//
+//
+// import 'package:flutter/material.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+//
+// class MapPage extends StatefulWidget {
+//   const MapPage({Key? key}) : super(key: key);
+//
+//   @override
+//   _MapPageState createState() => _MapPageState();
+// }
+//
+// class _MapPageState extends State<MapPage> {
+//   GoogleMapController _controller;
+//
+//   final LatLng _center = const LatLng(37.7749, -122.4194); // San Francisco
+//
+//   void _onMapCreated(GoogleMapController controller) {
+//     _controller = controller;
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Map"),
+//       ),
+//       body: GoogleMap(
+//         onMapCreated: _onMapCreated,
+//         initialCameraPosition: CameraPosition(
+//           target: _center,
+//           zoom: 11.0,
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -1,4 +1,6 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:skeleton_prototype/Screens/Home/components/home_body.dart';
 import 'package:skeleton_prototype/Screens/Home/home_screen.dart';
 import 'package:skeleton_prototype/Screens/Login/components/login_field_text.dart';
 import 'package:skeleton_prototype/Screens/Signup/user_signup_screen.dart';
@@ -10,11 +12,13 @@ import 'package:skeleton_prototype/constants.dart';
 class BodyLogIn extends StatefulWidget {
   const BodyLogIn({Key? key}) : super(key: key);
 
+
   @override
   _BodyLogInState createState() => _BodyLogInState();
 }
 
 class _BodyLogInState extends State<BodyLogIn> {
+
   // String error = "Forgot password?";
   // Color errorColor = kPrimaryLightColor;
   // String message = " Reset";
@@ -44,8 +48,21 @@ class _BodyLogInState extends State<BodyLogIn> {
     return user;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    String uid = user?.uid ?? "";
+
+    final DatabaseReference database = FirebaseDatabase.instance.reference();
+
+    DatabaseReference userMedsRef = database.child('users').child(uid).child('uid');
+
+    void addMed(String uid) {
+      userMedsRef.push().set(uid);
+    }
+
     //Create the textfield controller
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();

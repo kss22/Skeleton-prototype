@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:skeleton_prototype/Screens/Chat/chat_screen_individual.dart';
 import 'package:skeleton_prototype/constants.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class ChatBody extends StatefulWidget {
   const ChatBody({Key? key}) : super(key: key);
@@ -11,6 +12,28 @@ class ChatBody extends StatefulWidget {
 }
 
 class _ChatBodyState extends State<ChatBody> {
+  late List<Map<dynamic, dynamic>> userList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
+
+  void fetchUsers() {
+    final DatabaseReference database = FirebaseDatabase.instance.reference().child('doctors');
+    database.once().then((DataSnapshot snapshot) {
+      List<Map<dynamic, dynamic>> tempList = [];
+      Map<dynamic, dynamic> values = snapshot.value;
+      values.forEach((key, value) {
+        tempList.add(value);
+      });
+      setState(() {
+        userList = tempList;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,15 +41,13 @@ class _ChatBodyState extends State<ChatBody> {
       child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              child: 
-              Padding(
+              child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DecoratedBox(
                     decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: kPrimaryLightColor,
-                      borderRadius: BorderRadius.circular(29.0)
-                    ),
+                        border: Border.all(color: kPrimaryColor),
+                        color: kPrimaryLightColor,
+                        borderRadius: BorderRadius.circular(29.0)),
                     child: Row(
                       children: [
                         Padding(
@@ -36,21 +57,22 @@ class _ChatBodyState extends State<ChatBody> {
                             child: Image.asset("assets/icons/img_3.png"),
                           ),
                         ),
-                        Text("Chat Usename " + index.toString(), style: TextStyle(fontSize: 24.0),),
+                        Text(userList[index]['name'], style: TextStyle(fontSize: 24.0)),
                       ],
                     )),
               ),
-              // onTap: () => Scaffold
-              //     .of(context)
-              //     .showSnackBar(SnackBar(content: Text("Chat Username" + index.toString()))),
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ChatPage()));
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatPage()));
               },
             );
           },
-          itemCount: 20),
+          itemCount: userList.length),
     );
-    // Container(
+  }
+}
+
+
+// Container(
     //   padding: EdgeInsets.only(left: 7.0, top: 3.0),
     //   child: ListView(
     //     children: [
@@ -91,5 +113,3 @@ class _ChatBodyState extends State<ChatBody> {
     //     ],
     //   ),
     // );
-  }
-}
