@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:skeleton_prototype/MedicineList.dart';
 import 'package:skeleton_prototype/Screens/Chat/chat_screen.dart';
 import 'package:skeleton_prototype/Screens/Home/components/map_screen.dart';
 import 'package:skeleton_prototype/Screens/Home/components/search.dart';
@@ -9,9 +12,13 @@ import 'package:skeleton_prototype/Screens/UserProfile/user_profile_screen.dart'
 import 'package:skeleton_prototype/Screens/model/adol.dart';
 import 'package:skeleton_prototype/Screens/model/advil.dart';
 import 'package:skeleton_prototype/Screens/model/panadol.dart';
+import 'package:skeleton_prototype/components/rounded_button.dart';
 import 'package:skeleton_prototype/constants.dart';
 
+final databaseReference = FirebaseDatabase.instance.reference();
+
 class HomeBody extends StatefulWidget {
+
   const HomeBody({Key? key}) : super(key: key);
 
   @override
@@ -19,6 +26,40 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+
+  List<Map<dynamic, dynamic>> medicinesList = [];
+
+  void createMedicineNode(MedicineList medicine) {
+    DatabaseReference medicinesRef = databaseReference.child('medicines');
+
+    DatabaseReference newMedicineRef = medicinesRef.push();
+    newMedicineRef.set(medicine.toMap()).then((value) {
+      // Medicine node added successfully
+    }).catchError((error) {
+      // Handle error
+    });
+  }
+  void initState() {
+
+    // MedicineList medicine = MedicineList(
+    //   medication: 'Advil',
+    //   dosage: '50',
+    //   price: '300000',
+    // );
+    //
+    // createMedicineNode(medicine);
+    final DatabaseReference medsRef = databaseReference.child("medicines");
+    medsRef.once().then((DataSnapshot snapshot) {
+      setState(() {
+        medicinesList = [];
+        Map<dynamic, dynamic> values = snapshot.value;
+        values.forEach((key, value) {
+          medicinesList.add(value);
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,331 +87,51 @@ class _HomeBodyState extends State<HomeBody> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            // SingleChildScrollView(
-            //   scrollDirection: Axis.horizontal,
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(bottom: 8.0),
-            //     child: Container(
-            //       color: kPrimaryLightColor,
-            //       padding: EdgeInsets.all(5.0),
-            //       margin: EdgeInsets.symmetric(vertical: 0),
-            //       height: 80,
-            //       child: Row(
-            //         children: [
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Padding(
-            //               padding: const EdgeInsets.all(12.0),
-            //               child: Image.asset("assets/icons/img_3.png"),
-            //             ),
-            //           ),
-            //           SizedBox(
-            //             height: 5.0,
-            //             width: 5.0,
-            //           ),
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Image.asset("assets/icons/img_3.png"),
-            //           ),
-            //           SizedBox(
-            //             height: 5.0,
-            //             width: 5.0,
-            //           ),
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Image.asset("assets/icons/img_3.png"),
-            //           ),
-            //           SizedBox(
-            //             height: 5.0,
-            //             width: 5.0,
-            //           ),
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Image.asset("assets/icons/img_3.png"),
-            //           ),
-            //           SizedBox(
-            //             height: 5.0,
-            //             width: 5.0,
-            //           ),
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Image.asset("assets/icons/img_3.png"),
-            //           ),
-            //           SizedBox(
-            //             height: 5.0,
-            //             width: 5.0,
-            //           ),
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Image.asset("assets/icons/img_3.png"),
-            //           ),
-            //           SizedBox(
-            //             height: 5.0,
-            //             width: 5.0,
-            //           ),
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Image.asset("assets/icons/img_3.png"),
-            //           ),
-            //           SizedBox(
-            //             height: 5.0,
-            //             width: 5.0,
-            //           ),
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Image.asset("assets/icons/img_3.png"),
-            //           ),
-            //           SizedBox(
-            //             height: 5.0,
-            //             width: 5.0,
-            //           ),
-            //           CircleAvatar(
-            //             radius: 40,
-            //             child: Image.asset("assets/icons/img_3.png"),
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            GridView(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(10),
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 1,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20),
-              children: [
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Panadol()));
-                      },
-                      child: Image.asset('assets/icons/panadol.jpg'),
-                    ),
+      body: ListView.builder(
+        itemCount: medicinesList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserDetails(
+                    medicine: medicinesList[index],
                   ),
                 ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/profinal.jpeg'),
+              );
+            },
+            child: Container(
+              margin:
+              const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: ListTile(
+                title: Text(
+                  medicinesList[index]['medication'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/augmontin.jpg'),
-                  ),
+                subtitle: Text(
+                  medicinesList[index]['dosage'],
+                  style: TextStyle(fontSize: 14),
                 ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/cataflam.jpg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/flagyl.png'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/advil.jpg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/amoxicillin.jpg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/tylenol.jpg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/motilium.jpeg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Adol()));
-                      },
-                      child: Image.asset('assets/icons/adol.jpg'),
-                    ),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/augmontin.jpg'),
-                  ),
-                ),
-                // Image.asset('assets/icons/panadol.jpg'),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/cataflam.jpg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/tylenol.jpg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/amoxicillin.jpg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Advil()));
-                      },
-                      child: Image.asset('assets/icons/advil.jpg'),
-                    ),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/flagyl.png'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/motilium.jpeg'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/muscerol.png'),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: kPrimaryColor),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('assets/icons/adol.jpg'),
-                  ),
-                ),
-
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-                // Image.asset('assets/icons/img_3.png'),
-              ],
+                trailing: Icon(Icons.arrow_forward_ios),
+              ),
             ),
-          ],
-        ),
+          );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -398,7 +159,7 @@ class _HomeBodyState extends State<HomeBody> {
                   showSearch(
                       context: context,
                       // delegate to customize the search bar
-                      delegate: CustomSearchDelegate());
+                      delegate: CustomSearchDelegates(medicinesList: medicinesList));
                 },
               ),
               IconButton(
@@ -439,6 +200,181 @@ class _HomeBodyState extends State<HomeBody> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class UserDetails extends StatefulWidget {
+  final Map<dynamic, dynamic> medicine;
+
+  const UserDetails({Key? key, required this.medicine}) : super(key: key);
+
+  @override
+  _UserDetailsState createState() => _UserDetailsState();
+}
+
+class _UserDetailsState extends State<UserDetails> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kPrimaryColor,
+        title: Text(widget.medicine['medication']),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 26.0,
+            ),
+            Container(
+              width: double.infinity,
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Medicine Information',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      UserInfoRow(title: 'Medicine', value: widget.medicine['medication']),
+                      UserInfoRow(title: 'Dose', value: widget.medicine['dosage']),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 26.0,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class UserInfoRow extends StatelessWidget {
+  final String title;
+  final String value;
+
+  UserInfoRow({Key? key, required this.title, required this.value}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[700],
+            ),
+          ),
+          SizedBox(height: 4),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.grey[500],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomSearchDelegates extends SearchDelegate<String> {
+  final List<Map<dynamic, dynamic>> medicinesList;
+
+  CustomSearchDelegates({required this.medicinesList});
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, '');
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    final results = medicinesList.where((medicine) {
+      final medication = medicine['medication'].toLowerCase();
+      return medication.contains(query.toLowerCase());
+    }).toList();
+
+    return ListView.builder(
+      itemCount: results.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(results[index]['medication']),
+          subtitle: Text(results[index]['dosage']),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => UserDetails(medicine: results[index]),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggestions = medicinesList.where((medicine) {
+      final medication = medicine['medication'].toLowerCase();
+      return medication.contains(query.toLowerCase());
+    }).toList();
+
+    return ListView.builder(
+      itemCount: suggestions.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(suggestions[index]['medication']),
+          subtitle: Text(suggestions[index]['dosage']),
+          onTap: () {
+            query = suggestions[index]['medication'];
+            showResults(context);
+          },
+        );
+      },
     );
   }
 }
